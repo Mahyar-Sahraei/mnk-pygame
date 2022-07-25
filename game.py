@@ -4,8 +4,8 @@ from paper import *
 
 SCR_W = 400
 SCR_H = 400
-BOARD_W = 6
-BOARD_H = 6
+BOARD_W = 3
+BOARD_H = 3
 
 class Game:
 
@@ -108,7 +108,7 @@ class Game:
         return self.paper.last_mark
 
     def is_finished(self):
-        return self.paper.mark_count == 16
+        return self.paper.mark_count == BOARD_H * BOARD_W
 
     def _wait(self):
         while True:
