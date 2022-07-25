@@ -1,6 +1,6 @@
 import enum
 
-WIN_C = 4
+WIN_C = 3
 
 class State(enum.Enum):
     N = -1
