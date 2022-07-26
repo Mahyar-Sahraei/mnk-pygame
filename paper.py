@@ -1,14 +1,15 @@
 import enum
 
-BOARD_W = 3 # Number of vertical cells (M value)
-BOARD_H = 3 # Number of horizontal cells (N value)
-WIN_C = 3   # Number of cells in a row to win (K value)
+BOARD_W = 8 # Number of vertical cells (M value)
+BOARD_H = 8 # Number of horizontal cells (N value)
+WIN_C = 5   # Number of cells in a row to win (K value)
 
 class State(enum.Enum):
     N = -1 # Invalid Position
     E = 0  # Empty Block
     X = 1  # X Block
     O = 2  # O Block
+    Z = 3  # Z Block
 
 
 class Paper:

@@ -10,6 +10,7 @@ B_COLOR = (0x00, 0x00, 0x00) # Background color
 G_COLOR = (0x00, 0xFF, 0x00) # Grid color
 X_COLOR = (0x00, 0x00, 0xFF) # X player's color
 O_COLOR = (0xFF, 0x00, 0x00) # O player's color
+Z_COLOR = (0xFF, 0x00, 0xFF) # Z player's color
 L_COLOR = (0xFF, 0xFF, 0x00) # Win line color
 
 class Game:
@@ -67,6 +68,9 @@ class Game:
                 elif block == State.O:
                     pygame.draw.rect(screen, O_COLOR,
                         pygame.Rect(x * self.block_h, y * self.block_w, self.block_h, self.block_w))
+                elif block == State.Z:
+                    pygame.draw.rect(screen, Z_COLOR,
+                        pygame.Rect(x * self.block_h, y * self.block_w, self.block_h, self.block_w))
 
         #Draw grid
         for x in range(0, self.width):
@@ -107,6 +111,8 @@ class Game:
     def get_next(self, state : State):
         if state == State.X:
             return State.O
+        if state == State.O:
+            return State.Z
         return State.X
 
 if __name__ == "__main__":
