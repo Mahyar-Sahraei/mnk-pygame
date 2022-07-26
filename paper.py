@@ -2,7 +2,7 @@ import enum
 
 BOARD_W = 8 # Number of vertical cells (M value)
 BOARD_H = 8 # Number of horizontal cells (N value)
-WIN_C = 5   # Number of cells in a row to win (K value)
+WIN_C = 3   # Number of cells in a row to win (K value)
 
 class State(enum.Enum):
     N = -1 # Invalid Position
