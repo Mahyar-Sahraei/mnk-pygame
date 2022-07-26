@@ -8,4 +8,4 @@ Run this project with `python game.py`
 
 The goal of this game is simple: put K blocks in a row in the M by N board.
 
-Default values for m, n, k are 3, 3, 3  but you can change it int the code (game.BOARD_W, game.BOARD_H, paper.WIN_C)
+Default values for (m, n, k) are (3, 3, 3), but you can change them in the `paper.py` (BOARD_W, BOARD_H, WIN_C)
