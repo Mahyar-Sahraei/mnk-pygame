@@ -1,12 +1,14 @@
 import enum
 
-WIN_C = 3
+BOARD_W = 3 # Number of vertical cells (M value)
+BOARD_H = 3 # Number of horizontal cells (N value)
+WIN_C = 3   # Number of cells in a row to win (K value)
 
 class State(enum.Enum):
-    N = -1
-    E = 0
-    X = 1
-    O = 2
+    N = -1 # Invalid Position
+    E = 0  # Empty Block
+    X = 1  # X Block
+    O = 2  # O Block
 
 
 class Paper:
@@ -29,6 +31,8 @@ class Paper:
             self.last_marked = point
             self.last_mark = state
             self.mark_count += 1
+            return True
+        return False
 
     def get(self, point):
         point = [int(item) for item in point]
