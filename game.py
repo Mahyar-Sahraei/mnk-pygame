@@ -57,9 +57,9 @@ class Game:
 
     def render(self, screen):
         screen.fill(B_COLOR)
-        #Draw blocks
         for x in range(0, self.width):
             for y in range(0, self.height):
+                # Draw blocks
                 block = self.paper.board[x][y]
                 if block == State.X:
                     pygame.draw.rect(screen, X_COLOR,
@@ -67,32 +67,30 @@ class Game:
                 elif block == State.O:
                     pygame.draw.rect(screen, O_COLOR,
                         pygame.Rect(x * self.block_h, y * self.block_w, self.block_h, self.block_w))
-
-        #Draw grid
-        for x in range(0, self.width):
-            for y in range(0, self.height):
+                # Draw grids
                 pygame.draw.rect(screen, G_COLOR, 
                     pygame.Rect(x * self.block_h, y * self.block_w, self.block_h, self.block_w), 3)
+
         pygame.display.flip()
 
     def render_win_line(self, screen):
-        start = [
+        start = np.array([
             self.paper.win_start[0] * self.block_h + self.block_h // 2, 
             self.paper.win_start[1] * self.block_w + self.block_w // 2
-        ]
-        end = [
+        ], dtype=int)
+        end = np.array([
             self.paper.win_end[0] * self.block_h + self.block_h // 2,
             self.paper.win_end[1] * self.block_w + self.block_w // 2
-        ]
+        ], dtype=int)
 
         pygame.draw.line(screen, L_COLOR, start, end, 8)
         pygame.display.flip()
 
     def mark_paper(self, point, state : State):
-        point = [
+        point = np.array([
             point[0] // self.block_h, # Horizontal position of the cell
             point[1] // self.block_w  # Vertical position of the cell
-        ]
+        ], dtype=int)
         return self.paper.mark(point, state)
 
     def reset(self):

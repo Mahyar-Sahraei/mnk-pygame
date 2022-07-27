@@ -1,4 +1,5 @@
 import enum
+import numpy as np
 
 BOARD_W = 3 # Number of vertical cells (M value)
 BOARD_H = 3 # Number of horizontal cells (N value)
@@ -16,15 +17,14 @@ class Paper:
     def __init__(self, width : int, height : int):
         self.width : int = width
         self.height : int = height
-        self.board = [[State.E for i in range(width)] for j in range(height)]
-        self.win_start = [-1, -1]
-        self.win_end = [-1, -1]
-        self.last_marked = [-1, -1]
+        self.board = np.array([State.E] * width * height).reshape((width, height))
+        self.win_start = np.zeros(2, dtype=int)
+        self.win_end = np.zeros(2, dtype=int)
+        self.last_marked = np.zeros(2, dtype=int)
         self.last_mark : State = State.E
         self.mark_count : int = 0
 
     def mark(self, point, state : State):
-        point = [int(item) for item in point]
         current_state = self.board[point[0]][point[1]]
         if current_state == State.E:
             self.board[point[0]][point[1]] = state
@@ -35,7 +35,6 @@ class Paper:
         return False
 
     def get(self, point):
-        point = [int(item) for item in point]
         if (point[0]  >= self.height or
             point[0] < 0 or
             point[1] >= self.width or
@@ -54,7 +53,6 @@ class Paper:
 
 
     def _diag_win(self, point, state : State):
-        point = [int(item) for item in point]
         _rng : int = WIN_C - 1
 
         start_neg = [point[0] - _rng, point[1] - _rng]
@@ -86,7 +84,6 @@ class Paper:
 
 
     def _vert_win(self, point, state : State):
-        point = [int(item) for item in point]
         _rng = WIN_C - 1
         start = [point[0] - _rng, point[1]]
         consec_count = 0
@@ -102,7 +99,6 @@ class Paper:
             start[0] += 1
 
     def _horiz_win(self, point, state : State):
-        point = [int(item) for item in point]
         _rng = WIN_C - 1
         start = [point[0], point[1] - _rng]
         consec_count = 0
