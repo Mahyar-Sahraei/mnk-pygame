@@ -37,11 +37,11 @@ class Game:
                     pressed = pygame.mouse.get_pressed()
                     if pressed[0]:
                         clicked = self.mark_paper(pygame.mouse.get_pos(), player)
-                        player = self.get_next(player)
                 elif event.type == pygame.QUIT:
                     return False
 
             if clicked:
+                player = self.get_next(player)
                 self.render(self.screen)
                 if (self.paper.is_winning()):
                     self.render_win_line(self.screen)
